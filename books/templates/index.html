@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyLibrary | Smart Digital Library</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 60px;
+    background:rgba(15,23,42,0.8);
+    backdrop-filter:blur(10px);
+    position:sticky;
+    top:0;
+}
+
+.logo{
+    font-size:1.5rem;
+    font-weight:600;
+    background:linear-gradient(45deg,#38bdf8,#6366f1);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:30px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#cbd5f5;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:white;
+}
+
+/* POPUP MODAL STYLES */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: #22c55e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 20px;
+}
+
+.modal-content h2 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+.modal-content p {
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* HERO SECTION */
+.hero{
+    text-align:center;
+    padding:120px 20px;
+    background: radial-gradient(circle at top,#1e293b,#020617);
+}
+
+.hero h1{
+    font-size:3rem;
+    background:linear-gradient(45deg,#38bdf8,#818cf8);
+    -webkit-background-clip:text;
+    color:transparent;
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:#94a3b8;
+    max-width:600px;
+    margin:auto;
+    margin-bottom:30px;
+}
+
+/* BUTTON */
+.btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#38bdf8,#6366f1);
+    color:white;
+    cursor:pointer;
+    font-weight:500;
+    transition:0.3s;
+    box-shadow:0 0 15px rgba(99,102,241,0.5);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px rgba(56,189,248,0.7);
+}
+
+/* CARD SECTION */
+.section{
+    padding:80px 60px;
+    text-align:center;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border-radius:15px;
+    padding:30px;
+    transition:0.3s;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    background:rgba(255,255,255,0.08);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    background:#020617;
+    color:#94a3b8;
+}
+
+footer a{
+    color:#38bdf8;
+    text-decoration:none;
+    margin:0 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">MyLibrary</div>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="{% url 'history' %}">History</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Smart Digital Library</h1>
+    <p>Organize, explore and manage your books with a modern and intelligent library system.</p>
+
+    <div style="display:flex; gap:15px; justify-content:center; margin-top:20px;">
+        <a href="{% url 'books' %}" class="btn">Explore Books</a>
+    </div>
+
+    <!-- IMAGE -->
+    <div style="margin-top:50px;">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f"
+             style="width:80%; max-width:700px; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.6);">
+    </div>
+</section>
+
+
+
+<!-- FEATURES -->
+<section class="section">
+    <h2>Why Choose Us</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>📚 Easy Management</h3>
+            <p>Store and organize all your books in one place effortlessly.</p>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Fast Access</h3>
+            <p>Find books instantly with optimized search and filters.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Modern UI</h3>
+            <p>Enjoy a clean, stylish, and responsive interface.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT SHOWCASE -->
+<section class="section">
+    <h2>Library Preview</h2>
+
+    <div class="cards">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794"
+                 style="width:100%; border-radius:10px; margin-bottom:15px;">
+            <h3>Book Collection</h3>
+            <p>Browse curated collections easily.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d"
+                 style="width:100%; border-radius:10px; margin-bottom:15px;">
+            <h3>Reading Dashboard</h3>
+            <p>Track your reading journey smartly.</p>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66"
+                 style="width:100%; border-radius:10px; margin-bottom:15px;">
+            <h3>Smart Search</h3>
+            <p>Quickly find any book in seconds.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- FEATURES -->
+<section class="section">
+    <h2>Why Choose Us</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>📚 Easy Management</h3>
+            <p>Store and organize all your books in one place effortlessly.</p>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Fast Access</h3>
+            <p>Find books instantly with optimized search and filters.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Modern UI</h3>
+            <p>Enjoy a clean, stylish, and responsive interface.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 MyLibrary</p>
+    <div>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+</footer>
+
+</body>
+</html>
