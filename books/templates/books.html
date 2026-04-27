@@ -68,6 +68,20 @@
             color: #94a3b8;
         }
 
+        .book-card:hover .title{
+    color:#818cf8;
+    transition:0.3s;
+}
+    .buy-btn{
+    margin-top:15px;
+    width:100%;
+    background:linear-gradient(45deg,#38bdf8,#6366f1);
+    color:white;
+}
+
+.buy-btn:hover{
+    background:linear-gradient(45deg,#0ea5e9,#4f46e5);
+}
         .empty {
             text-align: center;
             color: #94a3b8;
@@ -105,12 +119,18 @@
                     📅 {{ i.published_date }} <br>
                     📄 {{ i.pages }} pages
                 </div>
-                <a href="{% url 'buy_book' i.id %}">
-                    <button class="btn" style="background:white; color:#0f172a;"
-                        onclick="alert('✅ Book purchased successfully!')">
-                        Buy Now
-                    </button>
-                </a>
+            <a href="{% url 'buy_book' i.id %}">
+                <button class="btn buy-btn">
+                    Buy Now
+                </button>
+            </a>
+            {% if messages %}
+    <div class="message-box">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
             </div>
         {% empty %}
             <p class="empty">No books available.</p>
