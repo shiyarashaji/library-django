@@ -205,15 +205,16 @@ footer a{
 <nav>
     <div class="logo">MyLibrary</div>
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#feature">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
         <li><a href="{% url 'history' %}">History</a></li>
     </ul>
 </nav>
 
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero"id="home">
     <h1>Smart Digital Library</h1>
     <p>Organize, explore and manage your books with a modern and intelligent library system.</p>
 
@@ -231,7 +232,7 @@ footer a{
 
 
 <!-- FEATURES -->
-<section class="section">
+<section class="section" id="feature">
     <h2>Why Choose Us</h2>
 
     <div class="cards">
@@ -251,6 +252,7 @@ footer a{
         </div>
     </div>
 </section>
+
 
 <!-- PROJECT SHOWCASE -->
 <section class="section">
@@ -281,7 +283,34 @@ footer a{
 </section>
 
 
+<!-- CONTACT -->
+<section class="section" id="contact">
+    <h2>Contact Us</h2>
 
+    <div class="cards" style="max-width:800px; margin:auto;">
+
+        <div class="card">
+            <h3>👩‍💻 Name</h3>
+            <p>Aromal</p>
+        </div>
+
+        <div class="card">
+            <h3>📧 Email</h3>
+            <p>Aromal@gmail.com</p>
+        </div>
+
+        <div class="card">
+            <h3>📱 Phone</h3>
+            <p>+91 1234567890</p>
+        </div>
+
+        <div class="card">
+            <h3>📍 Location</h3>
+            <p>Kerala, India</p>
+        </div>
+
+    </div>
+</section>
 
 <footer>
     <p>© 2026 MyLibrary</p>
